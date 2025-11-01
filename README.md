@@ -1,54 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧱 Project: [Chairez Fencing]
 
-## Getting Started
+### 📌 Overview
+A small business client for their family-owned business Chairez Fencing.  Recommended by the Stucker Family.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-
-# 🧱 Starter Template  
-*A reusable full-stack Next.js boilerplate for small business and portfolio websites.*
+> Example:  
+> This is the official website for **Chairez Fencing**, a California-based fencing company.  
+> Built using **Next.js 15 + Tailwind CSS**, hosted on **Vercel**, and designed with accessibility and SEO in mind.
 
 ---
 
-## ⚡ Tailwind v4 Notes
+### 🧰 Tech Stack
+- **Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS
+- **UI Components:** Custom + ShadCN (optional)
+- **Hosting:** Vercel
+- **Package Manager:** pnpm
 
-This template is configured for **Tailwind CSS v4**, which has a few important differences from older versions:
+---
 
-- ❌ `font-body`, `btn`, or other DaisyUI-style utilities no longer exist by default.  
-- ✅ Instead, use built-in Tailwind utilities directly (e.g., `text-lg font-semibold px-4 py-2 bg-blue-600 hover:bg-blue-700`).  
-- 🧩 If you want design presets like buttons or themes later, you can add a UI plugin such as [shadcn/ui](https://ui.shadcn.com/) or [DaisyUI](https://daisyui.com/).  
-- 🌈 Keep `globals.css` simple — only Tailwind directives should be in it:
+### 🗂️ Folder Structure
 
-```css
-@import "tailwindcss";
+src/
+├─ app/ # Pages & layouts
+├─ components/ # Reusable components
+│ └─ ui/ # Small UI elements
+├─ lib/ # Utilities or API helpers
+├─ data/ # JSON or static content
+├─ styles/ # Global or helper styles
+public/ # Images, icons, etc.
+tailwind.config.ts # Design tokens & theme
+postcss.config.js # Tailwind plugin config
+
+
+---
+
+### ⚙️ Setup & Local Development
+1. **Install dependencies**
+   
+   	pnpm install
+
+Run local dev server
+
+	pnpm dev
+
+App runs at: http://localhost:3000
+
+Build for production
+
+	pnpm build
+
+	Preview production build
+
+	pnpm start
+
+🌐 Deployment
+
+This site is deployed with Vercel.
+
+Deployment URL: https://project-name.vercel.app
+
+Production Branch: main
+
+
+🔐 Environment Variables (if any)
+
+Create a .env.local file in the project root.
+
+Example:
+
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+
+🖼️ Assets & SEO
+
+favicon.ico in /public
+
+robots.txt in /public
+
+(Optional) /sitemap.xml for indexing
+
+Update metadata in src/app/layout.tsx for SEO
+
+🧾 Project Notes
+Date	Change	Notes
+2025-10-07	Setup project	Copied from starter-template
+2025-10-10	Added hero + navbar	Styled using Tailwind helpers
+...	...	...
+🧑‍💼 Client Info
+
+Client: [Name or Business]
+Contact: [Email / Phone]
+Domain: [Live URL or planned domain]
+Status: Development / Review / Deployed
+
+🪄 Credits
+
+Created by Matthew McPherson
+McPherson Digital Works
+
+
+---
+
+✅ **How to use it**
+- Copy → Paste → Replace `[Project Name]` and other placeholders.  
+- Keep one per project folder for easy tracking.  
+- It doubles as your internal documentation *and* client handover file.
+
+---
+
+
+
+
+
+
+
+
+

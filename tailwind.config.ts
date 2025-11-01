@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: { DEFAULT: "#2563eb", dark: "#1e40af" },
+        brand: { DEFAULT: "#7A0C0C", dark: "#5C0909" },
       },
       fontFamily: {
         heading: ["ui-sans-serif", "system-ui"],
