@@ -2,14 +2,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    ignoreDuringBuilds: true,       // don't fail build on ESLint
+    ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: true,        // don't fail build on TS types
+    ignoreBuildErrors: true,
   },
   experimental: {
-    typedRoutes: false,             // avoids strict route typing surprises
+    typedRoutes: false,
   },
-}
+  output: "standalone",  // 👈 ensures Vercel sees the correct build output
+};
 
-export default nextConfig
+export default nextConfig;
