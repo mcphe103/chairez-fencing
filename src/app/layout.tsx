@@ -5,6 +5,8 @@ import Footer from "@/components/Footer"
 import ScrollToTop from "@/components/ScrollToTop"
 import Script from "next/script" 
 import RouteAnalytics from "@/components/RouteAnalytics";
+import GAProbe from "@/components/GAProbe";
+
 
 
 export const metadata: Metadata = {
@@ -63,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
 
         <Navbar />
+        <GAProbe />
         <RouteAnalytics />
         <main>{children}</main>
         <Footer />
