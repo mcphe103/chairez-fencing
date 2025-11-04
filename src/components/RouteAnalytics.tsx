@@ -1,24 +1,24 @@
 "use client";
-
 import { useEffect } from "react";
-import { usePathname } from "next/navigation"; // ← no useSearchParams
+import { usePathname } from "next/navigation";
 
-export default function RouteAnalytics({ gaId }: { gaId: string }) {
+export default function RouteAnalytics() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!gaId || typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
 
-    // Avoid firing on the special 404 render path
-    if (pathname === "/404" || pathname === "/_not-found") return;
-
-    const search = window.location.search || "";
-    const page_path = pathname + search;
-    const page_title = document.title;
-
-    // @ts-ignore gtag injected by GA script
-    window.gtag?.("event", "page_view", { page_title, page_path });
-  }, [gaId, pathname]);
+    const url = window.location.origin + pathname + window.location.search;
+    // Send a custom event to GTM whenever the route changes
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "route_change",
+      page_location: url,
+      page_path: pathname + (window.location.search || ""),
+      page_title: document.title,
+      page_referrer: document.referrer || "",
+    });
+  }, [pathname]);
 
   return null;
 }
