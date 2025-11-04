@@ -8,7 +8,9 @@ import { Suspense } from "react";
 import RouteAnalytics from "@/components/RouteAnalytics";
 import GAProbe from "@/components/GAProbe";
 
-
+export const viewport = {
+  themeColor: "#7A0C0C",
+};
 
 
 export const metadata: Metadata = {
@@ -64,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {`console.log('GA4 initialized:', '${GA_ID}')`}
           </Script>
           <Suspense fallback={null}>
-            <RouteAnalytics gaId={GA_ID!} />
+            <RouteAnalytics gaId={GA_ID} />
           </Suspense>
           </>
           )}
