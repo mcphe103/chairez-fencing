@@ -75,33 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           )}
 
 
-
-        {/* ✅ Google Analytics (only loads if GA_ID exists) */}
-      {GA_ID && (
-        <>
-        <Script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga4" strategy="afterInteractive">
-          {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', { anonymize_ip: true });
-            `}
-          </Script>
-            {/* tiny sanity check you can see in DevTools */}
-          <Script id="ga4-debug" strategy="afterInteractive">
-            {`console.log('GA4 initialized:', '${GA_ID}')`}
-          </Script>
-          <Suspense fallback={null}>
-            <RouteAnalytics gaId={GA_ID} />
-          </Suspense>
-          </>
-          )}
-
       <Navbar />
       <GAProbe />
       <RouteAnalytics />
