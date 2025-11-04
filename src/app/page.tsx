@@ -5,6 +5,8 @@ import Services from "@/components/Services"
 import Gallery from "@/components/Gallery"
 import Contact from "@/components/Contact"
 import Reveal from "@/components/Reveal" 
+import VideoHero from "@/components/VideoHero";
+
 
 
 
@@ -33,11 +35,12 @@ export default function HomePage() {
   ]
   return (
     <main>
-      <Hero
-        title="Chairez Fencing"
-        subtitle="Ready to customize for any client or project."
-        primary={{ label: "Contact Us", href: "/contact" }}
-        secondary={{ label: "View Services", href: "/services" }}
+      <VideoHero
+        title="Reliable. Affordable. Professional Fencing Solutions."
+        subtitle="Proudly serving Antioch, Pittsburg, Brentwood, Oakley, and nearby East Bay communities."
+        ctaText="Get a free Quote"
+        ctaHref="#contact"
+        poster="/images/og-default.jpg" // optional fallback frame
       />
       {/* Why Homeowners Choose Us */}
 <section className="bg-gradient-to-b from-white to-slate-50 py-14">
@@ -65,10 +68,11 @@ export default function HomePage() {
         </Reveal>
       ))}
     </div>
+
   </div>
 </section>
 
-
+      
 
       <Services />
       {/* Next: Gallery / About / Contact */}
