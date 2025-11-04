@@ -86,6 +86,19 @@ export default function Contact() {
 
             setSending(false)
             setSent(true)
+
+            // ✅ tell GTM/GA4 a lead happened
+            if (typeof window !== "undefined") {
+  // make sure dataLayer exists
+              ;(window as any).dataLayer = (window as any).dataLayer || []
+              ;(window as any).dataLayer.push({
+                event: "form_submission",
+                form_name: "contact_form",
+    // optional extra details you may want later:
+    // service: data.service,
+              })
+            }
+            
             setData(INITIAL)
           } catch {
             setServerError("Network error. Please try again.")
