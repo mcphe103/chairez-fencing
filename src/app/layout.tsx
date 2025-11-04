@@ -4,8 +4,10 @@ import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import ScrollToTop from "@/components/ScrollToTop"
 import Script from "next/script" 
+import { Suspense } from "react";           
 import RouteAnalytics from "@/components/RouteAnalytics";
 import GAProbe from "@/components/GAProbe";
+
 
 
 
@@ -40,37 +42,40 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID // ← read from env
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="antialiased bg-slate-50 text-slate-900">
+    <body className="antialiased bg-slate-50 text-slate-900">
         {/* ✅ Google Analytics (only loads if GA_ID exists) */}
-        {GA_ID && (
-          <>
-            <Script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4" strategy="afterInteractive">
-              {`
+      {GA_ID && (
+        <>
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${GA_ID}', { anonymize_ip: true });
-              `}
-            </Script>
+            `}
+          </Script>
             {/* tiny sanity check you can see in DevTools */}
-            <Script id="ga4-debug" strategy="afterInteractive">
-              {`console.log('GA4 initialized:', '${GA_ID}')`}
-            </Script>
+          <Script id="ga4-debug" strategy="afterInteractive">
+            {`console.log('GA4 initialized:', '${GA_ID}')`}
+          </Script>
+          <Suspense fallback={null}>
+            <RouteAnalytics gaId={GA_ID!} />
+          </Suspense>
           </>
-        )}
+          )}
 
-        <Navbar />
-        <GAProbe />
-        <RouteAnalytics />
-        <main>{children}</main>
-        <Footer />
-        <ScrollToTop />
-      </body>
+      <Navbar />
+      <GAProbe />
+      <RouteAnalytics />
+      <main>{children}</main>
+      <Footer />
+      <ScrollToTop />
+    </body>
     </html>
-  )
+    )
 }
