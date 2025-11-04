@@ -15,11 +15,11 @@ export default function VideoHero({
   subtitle = "Serving Antioch, Pittsburg, Brentwood, Oakley, and the East Bay.",
   ctaText = "Request a Quote",
   ctaHref = "#contact",
-  poster = "/images/og-default.jpg", // replace with a true frame grab if you have one
+  poster = "/images/og-default.jpg",
 }: Props) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  // Respect prefers-reduced-motion: pause the background video
+  // Respect prefers-reduced-motion by pausing the video (do NOT hide it)
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches && videoRef.current) {
@@ -32,8 +32,7 @@ export default function VideoHero({
       {/* Background video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover
-                   motion-reduce:hidden" // hide video if user prefers reduced motion
+        className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
         loop
@@ -42,17 +41,10 @@ export default function VideoHero({
         poster={poster}
         aria-hidden="true"
       >
-        {/* If you later make a webm version, add it above MP4 for better compression */}
-        {/* <source src="/videos/chairez-video.webm" type="video/webm" /> */}
-        <source src="/videos/chairez-video.mp4" type="video/mp4" />
+        {/* Optional: add a WebM source above MP4 later */}
+        {/* <source src="/videos/chairez-video.webm?v=2" type="video/webm" /> */}
+        <source src="/videos/chairez-video.mp4?v=2" type="video/mp4" />
       </video>
-
-      {/* Fallback image when motion reduced (or if video can’t play) */}
-      <div
-        className="absolute inset-0 bg-center bg-cover hidden motion-reduce:block"
-        style={{ backgroundImage: `url(${poster})` }}
-        aria-hidden="true"
-      />
 
       {/* Overlay for contrast */}
       <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
@@ -60,12 +52,8 @@ export default function VideoHero({
       {/* Foreground content */}
       <div className="relative z-10 h-full flex items-center">
         <div className="mx-auto w-full max-w-5xl px-6 text-center text-white">
-          <h1 className="text-3xl md:text-5xl font-bold drop-shadow-sm">
-            {title}
-          </h1>
-          <p className="mt-4 text-base md:text-lg opacity-95">
-            {subtitle}
-          </p>
+          <h1 className="text-3xl md:text-5xl font-bold drop-shadow-sm">{title}</h1>
+          <p className="mt-4 text-base md:text-lg opacity-95">{subtitle}</p>
 
           {ctaText && ctaHref && (
             <a
