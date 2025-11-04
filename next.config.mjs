@@ -1,16 +1,13 @@
-// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  // ✅ new place
+  typedRoutes: true,
+
+  // If you had other experimental flags, keep them — but REMOVE typedRoutes from here
   experimental: {
-    typedRoutes: false,
+    // ...other experimental flags (not typedRoutes)
   },
-  output: "standalone",  // 👈 ensures Vercel sees the correct build output
+  reactStrictMode: true,
 };
 
 export default nextConfig;
