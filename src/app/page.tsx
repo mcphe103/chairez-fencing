@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
+
+  
    const features = [
     {
       icon: "🛠️",
