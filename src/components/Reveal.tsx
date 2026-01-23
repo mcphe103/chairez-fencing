@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode
   delay?: number
   className?: string
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
   y?: number // how far to slide up
 }
 
