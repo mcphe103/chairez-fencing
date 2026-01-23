@@ -2,10 +2,17 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
 import Script from "next/script";
 import RouteAnalytics from "@/components/RouteAnalytics";
 // import GAProbe from "@/components/GAProbe"; // optional: remove when done debugging
+
+import dynamic from "next/dynamic";
+
+const ScrollToTop = dynamic(
+  () => import("@/components/ScrollToTop"),
+  { ssr: false }
+);
+
 
 export const viewport = {
   themeColor: "#7A0C0C",
