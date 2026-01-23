@@ -5,13 +5,18 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 import RouteAnalytics from "@/components/RouteAnalytics";
 // import GAProbe from "@/components/GAProbe"; // optional: remove when done debugging
+import { Suspense } from "react";
+import ClientOnly from "@/components/ClientOnly";
+import ScrollToTop from "@/components/ScrollToTop";
 
-import dynamic from "next/dynamic";
+<Suspense fallback={null}>
+  <ClientOnly>
+    <ScrollToTop />
+  </ClientOnly>
+</Suspense>
 
-const ScrollToTop = dynamic(
-  () => import("@/components/ScrollToTop"),
-  { ssr: false }
-);
+
+
 
 
 export const viewport = {
