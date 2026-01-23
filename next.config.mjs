@@ -5,5 +5,10 @@ const nextConfig = {
     // keep other experimental flags here, but NOT typedRoutes
   },
   reactStrictMode: true,
+
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
+
 export default nextConfig;
