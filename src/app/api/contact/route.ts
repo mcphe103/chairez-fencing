@@ -107,7 +107,7 @@ export async function POST(req: Request) {
       to: CONTACT_TO,
       subject,
       html,
-      reply_to: email && email.length ? email : undefined,
+        replyTo: email?.trim() ? email.trim() : undefined,
     })
 
     if (error) {

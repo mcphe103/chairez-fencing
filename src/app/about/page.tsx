@@ -6,6 +6,7 @@ import { BUSINESS } from "@/lib/business";
 
 
 
+
 export const metadata: Metadata = {
   title: "About | Chairez Fencing",
   description:
