@@ -4,20 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import RouteAnalytics from "@/components/RouteAnalytics";
-// import GAProbe from "@/components/GAProbe"; // optional: remove when done debugging
 import { Suspense } from "react";
 import ClientOnly from "@/components/ClientOnly";
 import ScrollToTop from "@/components/ScrollToTop";
-
-<Suspense fallback={null}>
-  <ClientOnly>
-    <ScrollToTop />
-  </ClientOnly>
-</Suspense>
-
-
-
-
 
 export const viewport = {
   themeColor: "#7A0C0C",
@@ -46,11 +35,9 @@ export const metadata: Metadata = {
     description: "Professional, reliable, and affordable fencing services.",
     images: ["/images/og-default.jpg"],
   },
-  // ❌ remove themeColor here to avoid warning (it's already in `viewport`)
-  // themeColor: "#7A0C0C",
 };
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID; // e.g., "GTM-NJFH3R4Z"
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID; // e.g., "GTM-XXXXXXX"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -68,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 })(window,document,'script','dataLayer','${GTM_ID}');
               `}
             </Script>
+
             <noscript>
               <iframe
                 src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -80,11 +68,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
 
         <Navbar />
-        {/* <GAProbe /> */}
-        <RouteAnalytics />
+
+        {/* ✅ Next 15: wrap navigation-hook components in Suspense */}
+        <Suspense fallback={null}>
+          <RouteAnalytics />
+        </Suspense>
+
         <main>{children}</main>
+
         <Footer />
-        <ScrollToTop />
+
+        {/* ✅ ScrollToTop uses useSearchParams in your project */}
+        <Suspense fallback={null}>
+          <ClientOnly>
+            <ScrollToTop />
+          </ClientOnly>
+        </Suspense>
       </body>
     </html>
   );
