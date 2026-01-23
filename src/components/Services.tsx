@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { BUSINESS, telHref, emailHref,phoneHref } from "@/lib/business"
+import type { Route } from "next";
+
 
 
 // Brand colors
@@ -18,29 +20,36 @@ type Service = {
   img?: string // optional: /public images
 }
 
-const SERVICES: Service[] = [
+const SERVICES = [
   {
     key: "wood",
     name: "Wood Fencing",
     blurb: "Classic privacy and curb appeal with pressure-treated posts and custom styles.",
     href: "/services/wood",
-    img: "/images/services/image15.jpeg", // use your real client photo if available
+    img: "/images/services/image15.jpeg",
   },
   {
     key: "decks",
     name: "Decks",
     blurb: "Sturdy, weather-resistant decks built for everyday use and weekend hosting.",
     href: "/services/decks",
-    img: "/images/services/img5.jpg", // or placeholder deck.svg (below)
+    img: "/images/services/img5.jpg",
   },
   {
     key: "lighting",
     name: "Outdoor Lighting",
     blurb: "Installations & fixture upgrades for pathways, patios, and security lighting.",
     href: "/services/lighting",
-    img: "/images/services/img4.jpg", // or placeholder lighting.svg (below)
+    img: "/images/services/img4.jpg",
   },
-]
+] satisfies Array<{
+  key: string;
+  name: string;
+  blurb: string;
+  href: Route;
+  img: string;
+}>;
+
 
 
 export default function Services() {
