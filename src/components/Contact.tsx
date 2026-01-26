@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { BUSINESS, telHref } from "@/lib/business"
+import { BUSINESS, telFromE164 } from "@/lib/business";
 
 <input type="text" name="company" className="hidden" tabIndex={-1} value="" readOnly />
 
@@ -119,11 +119,22 @@ export default function Contact() {
                 className="text-center mb-10"
               >
                 <p className="text-slate-700 mt-3 font-medium">
-                  📞 Call us today:{" "}
-                  <a href={telHref} className="text-[#7A0C0C] hover:underline">
-                    {BUSINESS.phoneDisplay}
-                  </a>
+                  📞 Call us today:
                 </p>
+
+                <div className="mt-2 space-y-1">
+                  {(BUSINESS.phones ?? []).map((p) => (
+                    <a
+                      key={p.e164}
+                      href={telFromE164(p.e164)}
+                      className="block text-[#7A0C0C] hover:underline font-semibold"
+                    >
+                      {p.display}
+                      {p.label ? <span className="text-slate-600 font-medium"> ({p.label})</span> : null}
+                    </a>
+                    ))}
+                </div>
+
                 <h2 className="text-3xl md:text-5xl font-bold mt-2">Tell Us About Your Project</h2>
                 <p className="text-slate-600 mt-4">
                   We proudly serve homeowners and businesses throughout Antioch, Pittsburg, Brentwood, Oakley, Concord, Clayton, Discovery Bay, Bay Point, Knightsen, and Walnut Creek—with availability across nearby East Bay and Delta communities.

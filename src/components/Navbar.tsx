@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import ScrollProgress from "@/components/ScrollProgress"
+import { BUSINESS, telFromE164 } from "@/lib/business";
+
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -40,95 +42,114 @@ export default function Navbar() {
         <span className="font-semibold text-lg">Chairez Fencing</span>
       </Link>
 
-        {/* Desktop links */}
-      <div className="hidden md:flex gap-6 text-sm font-medium">
-        <Link href="/" className="hover:text-[#7A0C0C] transition-colors">
-        Home
-      </Link>
-      <Link href="/#services" className="hover:text-[#7A0C0C] transition-colors">
-      Services
-    </Link>
-    <Link href="/gallery" className="hover:text-[#7A0C0C] transition-colors">
-    Gallery
-  </Link>
-  <Link href="/about" className="hover:text-[#7A0C0C] transition-colors">
-  About
-</Link>
-<Link href="/contact" className="hover:text-[#7A0C0C] transition-colors">
-Contact
-</Link>
-</div>
+        {/* Desktop links + phones */}
+      <div className="hidden md:flex items-center gap-6 text-sm font-medium">
+        <Link href="/" className="hover:text-[#7A0C0C] transition-colors">Home</Link>
+        <Link href="/#services" className="hover:text-[#7A0C0C] transition-colors">Services</Link>
+        <Link href="/gallery" className="hover:text-[#7A0C0C] transition-colors">Gallery</Link>
+        <Link href="/about" className="hover:text-[#7A0C0C] transition-colors">About</Link>
+        <Link href="/contact" className="hover:text-[#7A0C0C] transition-colors">Contact</Link>
+
+  {/* Phones */}
+        <div className="flex items-center gap-3 pl-4 border-l border-white/20">
+          {BUSINESS.phones.map((p) => (
+            <a
+              key={p.e164}
+              href={telFromE164(p.e164)}
+              className="text-sm font-semibold text-white hover:text-[#7A0C0C] transition-colors whitespace-nowrap"
+            >
+              📞 {p.display}
+            </a>
+            ))}
+        </div>
+      </div>
+
 
         {/* Mobile hamburger */}
-<button
-  type="button"
-  className="md:hidden focus:outline-none"
-  onClick={toggleMenu}
-  aria-label="Toggle menu"
->
-  <div className="w-6 h-[2px] bg-white mb-[5px]" />
-  <div className="w-6 h-[2px] bg-white mb-[5px]" />
-  <div className="w-6 h-[2px] bg-white" />
-</button>
-</nav>
+      <button
+        type="button"
+        className="md:hidden focus:outline-none"
+        onClick={toggleMenu}
+        aria-label="Toggle menu"
+      >
+        <div className="w-6 h-[2px] bg-white mb-[5px]" />
+        <div className="w-6 h-[2px] bg-white mb-[5px]" />
+        <div className="w-6 h-[2px] bg-white" />
+      </button>
+    </nav>
 
       {/* Mobile menu dropdown */}
-{menuOpen && (
-  <div className="md:hidden bg-black/95 text-white px-6 py-4 border-t border-slate-700">
-    <ul className="flex flex-col gap-3">
-      <li>
-        <Link
-          href="/"
-          className="block hover:text-[#7A0C0C] transition-colors"
-          onClick={() => setMenuOpen(false)}
-        >
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link
-          href="/#services"
-          className="block hover:text-[#7A0C0C] transition-colors"
-          onClick={() => setMenuOpen(false)}
-        >
-          Services
-        </Link>
-      </li>
-      <li>
-        <Link
-          href="/gallery"
-          className="block hover:text-[#7A0C0C] transition-colors"
-          onClick={() => setMenuOpen(false)}
-        >
-          Gallery
-        </Link>
-      </li>
-      <li>
-        <Link
-          href="/about"
-          className="block hover:text-[#7A0C0C] transition-colors"
-          onClick={() => setMenuOpen(false)}
-        >
-          About
-        </Link>
-      </li>
-      <li>
-        <Link
-          href="/contact"
-          className="block hover:text-[#7A0C0C] transition-colors"
-          onClick={() => setMenuOpen(false)}
-        >
-          Contact
-        </Link>
-      </li>
-    </ul>
-  </div>
-  )}
+    {menuOpen && (
+      <div className="md:hidden bg-black/95 text-white px-6 py-4 border-t border-slate-700">
+        <ul className="flex flex-col gap-3">
+          <li>
+            <Link
+              href="/"
+              className="block hover:text-[#7A0C0C] transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/#services"
+              className="block hover:text-[#7A0C0C] transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/gallery"
+              className="block hover:text-[#7A0C0C] transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              Gallery
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className="block hover:text-[#7A0C0C] transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className="block hover:text-[#7A0C0C] transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </Link>
+          </li>
+          <li className="pt-3 mt-3 border-t border-slate-700">
+            <div className="flex flex-col gap-2">
+              {BUSINESS.phones.map((p) => (
+                <a
+                  key={p.e164}
+                  href={telFromE164(p.e164)}
+                  className="font-semibold text-white hover:text-[#7A0C0C] transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  📞 {p.display}
+                </a>
+                ))}
+            </div>
+          </li>
+
+        </ul>
+      </div>
+      )}
 
       {/* Scroll progress bar (bottom of navbar) */}
-<div className="absolute bottom-0 left-0 right-0">
-  <ScrollProgress />
-</div>
-</header>
-)
+    <div className="absolute bottom-0 left-0 right-0">
+      <ScrollProgress />
+    </div>
+  </header>
+  )
 }
