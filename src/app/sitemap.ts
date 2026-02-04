@@ -1,13 +1,16 @@
-import type { MetadataRoute } from "next"
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.chairezfencing.com"
+  const now = new Date();
+
   return [
-    { url: `${base}/`, lastModified: new Date() },
-    { url: `${base}/about`, lastModified: new Date() },
-    { url: `${base}/services`, lastModified: new Date() },
-    { url: `${base}/gallery`, lastModified: new Date() },
-    { url: `${base}/contact`, lastModified: new Date() },
-    // add others if needed
-  ]
+    { url: "https://www.chairezfencing.com/", lastModified: now },
+    { url: "https://www.chairezfencing.com/about", lastModified: now },
+    { url: "https://www.chairezfencing.com/services", lastModified: now },
+    { url: "https://www.chairezfencing.com/gallery", lastModified: now },
+    { url: "https://www.chairezfencing.com/gallery/wood", lastModified: now },
+    { url: "https://www.chairezfencing.com/gallery/iron", lastModified: now },
+    { url: "https://www.chairezfencing.com/gallery/decks", lastModified: now },
+    { url: "https://www.chairezfencing.com/contact", lastModified: now },
+  ];
 }
