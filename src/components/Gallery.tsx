@@ -5,9 +5,7 @@ import Reveal from "@/components/Reveal"
 
 export default function Gallery() {
   const images: string[] = [
-    "/images/gallery/image9.jpeg",
-    "/images/gallery/image14.jpeg",
-    "/images/gallery/image20.jpeg",
+
   ]
 
   return (

@@ -10,12 +10,12 @@ import { BUSINESS } from "@/lib/business";
 export const metadata: Metadata = {
   title: "About | Chairez Fencing",
   description:
-  "Chairez Fencing is a family-owned contractor specializing in wood fencing, iron fencing, and deck construction. Reliable, affordable, professional.",
+  "Chairez Fencing is a family-owned contractor specializing in wood fencing, iron fencing, gates, and deck construction. Reliable, affordable, professional.",
 
   openGraph: {
     title: "About Chairez Fencing",
     description:
-    "Family-owned contractor for wood fencing, iron fencing, and deck construction. Serving our community with quality craftsmanship.",
+    "Family-owned contractor for wood fencing, iron fencing, gates, and deck construction. Serving our community with quality craftsmanship.",
     type: "website",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630 }],
   },
@@ -41,7 +41,7 @@ const ABOUT_LD_JSON = {
     url: "https://www.chairezfencing.com",
     image: "https://www.chairezfencing.com/images/logo.png",
     description:
-    "Family-owned contractor specializing in wood fencing, iron fencing, and deck construction.",
+    "Family-owned contractor specializing in wood fencing, iron fencing, gates, and deck construction.",
     telephone: BUSINESS.phoneE164,           // ✅ single source
     areaServed: ["Fresno County, CA"],
   },
@@ -71,7 +71,7 @@ export default function AboutPage() {
           </h1>
           <p className="text-slate-600 mt-5 max-w-3xl">
             Chairez Fencing delivers reliable craftsmanship for{" "}
-            <strong>wood fencing</strong>, <strong>iron fencing</strong>, and{" "}
+            <strong>Wood Fencing</strong>, <strong>Iron Fencing & Gates</strong>, and{" "}
             <strong>deck construction</strong>. We show up on time, communicate
             clearly, and build it right the first time.
           </p>

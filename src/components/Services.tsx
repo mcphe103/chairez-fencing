@@ -37,7 +37,7 @@ const SERVICES = [
   },
   {
     key: "iron",
-    name: "Iron Fencing",
+    name: "Iron Fencing & Gates",
     blurb: "Iron fencing, gates, and repairs.",
     href: "/gallery/iron",
     img: "/images/services/iron-01.jpeg",
@@ -76,91 +76,92 @@ export default function Services() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
-
+        <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
           {SERVICES.map((s, i) => (
-  <motion.article
-    key={s.key}
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.2 }}
-    transition={{ duration: 0.5, delay: i * 0.05 }}
-    className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md"
-  >
-    {/* Clickable overlay */}
-    <Link
-      href={s.href}
-      aria-label={`${s.name} gallery`}
-      className="absolute inset-0 z-10 rounded-2xl"
-    />
+            <Link
+              key={s.key}
+              href={s.href}
+              aria-label={`${s.name} gallery`}
+              className="block h-full"
+            >
+              <motion.article
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="group flex flex-col h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md"
+              >
+      {/* Image */}
+                <div className="relative h-40 overflow-hidden">
+                  {s.img ? (
+                    <motion.div
+                      whileHover={{ scale: 1.08 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="w-full h-full"
+                    >
+                      <Image
+                        src={s.img}
+                        alt={`${s.name} example`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        priority={i < 2}
+                        />
+                      </motion.div>
+                      ) : (
+                      <div className="h-full w-full bg-slate-100" />
+                      )}
 
-    {/* Image */}
-    <div className="relative h-40 overflow-hidden">
-      {s.img ? (
-        <motion.div
-          whileHover={{ scale: 1.08 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="w-full h-full"
-        >
-          <Image
-            src={s.img}
-            alt={`${s.name} example`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-            priority={i < 2}
-          />
-        </motion.div>
-      ) : (
-        <div className="h-full w-full bg-slate-100" />
-      )}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
+                    </div>
 
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
-    </div>
+      {/* Content */}
+                    <div className="p-5 flex flex-col flex-1">
+                      <h3 className="text-xl font-semibold leading-tight min-h-[3rem]">
+                        {s.name}
+                      </h3>
+                      <p className="text-slate-600 mt-2 flex-1">{s.blurb}</p>
 
-    {/* Content */}
-    <div className="p-5 flex flex-col h-full relative z-20">
-      <h3 className="text-xl font-semibold">{s.name}</h3>
-      <p className="text-slate-600 mt-2 flex-1">{s.blurb}</p>
-
-      <div className="mt-4">
-        <span
-          className="inline-block rounded-lg px-4 py-2 text-white"
-          style={{ backgroundColor: "#7A0C0C" }}
-        >
-          View Gallery
-        </span>
-      </div>
-    </div>
-  </motion.article>
-))}
+                      <div className="mt-4">
+          {/* Visual button (card is the link) */}
+                        <span
+                          className="inline-block rounded-lg px-4 py-2 text-white transition-colors"
+                          style={{ backgroundColor: "#7A0C0C" }}
+                        >
+                          View Gallery
+                        </span>
+                      </div>
+                    </div>
+                  </motion.article>
+                </Link>
+                ))}
         </div>
 
         {/* CTA bar */}
         {/* CTA */}
-<section className="py-14 md:py-20 bg-slate-50">
-  <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 rounded-2xl border border-slate-200 p-6 md:p-8">
-    <div>
-      <h3 className="text-2xl font-bold">Ready for a free quote?</h3>
-      <p className="text-slate-600 mt-1">
-        Tell us about your project — we’ll respond quickly.
-      </p>
-      <p className="text-slate-700 mt-3 font-medium">
-        📞 Call us today:{" "}
-        <a href={phoneHref} className="text-[#7A0C0C] hover:underline">
+        <section className="py-14 md:py-20 bg-slate-50">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 rounded-2xl border border-slate-200 p-6 md:p-8">
+            <div>
+              <h3 className="text-2xl font-bold">Ready for a free quote?</h3>
+              <p className="text-slate-600 mt-1">
+                Tell us about your project — we’ll respond quickly.
+              </p>
+              <p className="text-slate-700 mt-3 font-medium">
+                📞 Call us today:{" "}
+                <a href={phoneHref} className="text-[#7A0C0C] hover:underline">
                   {BUSINESS.phoneDisplay}
                 </a>
-      </p>
-    </div>
+              </p>
+            </div>
 
-    <Link
-      href="/contact"
-      className="rounded-lg px-5 py-3 text-white font-semibold bg-[#7A0C0C] hover:bg-[#5C0909] transition-colors"
-    >
-      Get a Free Quote
-    </Link>
-  </div>
-</section>
+            <Link
+              href="/contact"
+              className="rounded-lg px-5 py-3 text-white font-semibold bg-[#7A0C0C] hover:bg-[#5C0909] transition-colors"
+            >
+              Get a Free Quote
+            </Link>
+          </div>
+        </section>
 
       </div>
     </section>
