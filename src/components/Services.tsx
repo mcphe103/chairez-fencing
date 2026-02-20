@@ -25,22 +25,22 @@ const SERVICES = [
     key: "wood",
     name: "Wood Fencing",
     blurb: "Classic privacy and curb appeal with pressure-treated posts and custom styles.",
-    href: "/services/wood",
+    href: "/gallery/wood",
     img: "/images/services/image15.jpeg",
   },
   {
     key: "decks",
     name: "Decks",
     blurb: "Sturdy, weather-resistant decks built for everyday use and weekend hosting.",
-    href: "/services/decks",
+    href: "/gallery/decks",
     img: "/images/services/img5.jpg",
   },
   {
-    key: "lighting",
-    name: "Outdoor Lighting",
-    blurb: "Installations & fixture upgrades for pathways, patios, and security lighting.",
-    href: "/services/lighting",
-    img: "/images/services/img4.jpg",
+    key: "iron",
+    name: "Iron Fencing",
+    blurb: "Iron fencing, gates, and repairs.",
+    href: "/gallery/iron",
+    img: "/images/services/iron-01.jpeg",
   },
 ] satisfies Array<{
   key: string;
@@ -79,58 +79,61 @@ export default function Services() {
         <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
 
           {SERVICES.map((s, i) => (
-            <motion.article
-              key={s.key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md"
-            >
-              {/* Optional image (falls back to a color block if missing) */}
-              <div className="relative h-40 overflow-hidden">
-  {s.img ? (
-    <motion.div
-      whileHover={{ scale: 1.08 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="w-full h-full"
-    >
-      <Image
-        src={s.img}
-        alt={`${s.name} example`}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-        priority={i < 2}
-      />
-    </motion.div>
-  ) : (
-    <div className="h-full w-full" style={{ background: burgundy, opacity: 0.1 }} />
-  )}
-  {/* key change: allow hover to pass through */}
-  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
-</div>
+  <motion.article
+    key={s.key}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{ duration: 0.5, delay: i * 0.05 }}
+    className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md"
+  >
+    {/* Clickable overlay */}
+    <Link
+      href={s.href}
+      aria-label={`${s.name} gallery`}
+      className="absolute inset-0 z-10 rounded-2xl"
+    />
 
+    {/* Image */}
+    <div className="relative h-40 overflow-hidden">
+      {s.img ? (
+        <motion.div
+          whileHover={{ scale: 1.08 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="w-full h-full"
+        >
+          <Image
+            src={s.img}
+            alt={`${s.name} example`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            priority={i < 2}
+          />
+        </motion.div>
+      ) : (
+        <div className="h-full w-full bg-slate-100" />
+      )}
 
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
+    </div>
 
-                  <div className="p-5 flex flex-col h-full">
-                    <h3 className="text-xl font-semibold">{s.name}</h3>
-                    <p className="text-slate-600 mt-2 flex-1">{s.blurb}</p>
+    {/* Content */}
+    <div className="p-5 flex flex-col h-full relative z-20">
+      <h3 className="text-xl font-semibold">{s.name}</h3>
+      <p className="text-slate-600 mt-2 flex-1">{s.blurb}</p>
 
-                    <div className="mt-4">
-                      <Link
-                        href={s.href}
-                        className="inline-block rounded-lg px-4 py-2 text-white transition-colors"
-                        style={{ backgroundColor: burgundy }}
-                        onMouseEnter={(e) => ((e.currentTarget.style.backgroundColor = burgundyHover))}
-                        onMouseLeave={(e) => ((e.currentTarget.style.backgroundColor = burgundy))}
-                      >
-                        Learn more
-                      </Link>
-                    </div>
-                  </div>
-                </motion.article>
-                ))}
+      <div className="mt-4">
+        <span
+          className="inline-block rounded-lg px-4 py-2 text-white"
+          style={{ backgroundColor: "#7A0C0C" }}
+        >
+          View Gallery
+        </span>
+      </div>
+    </div>
+  </motion.article>
+))}
         </div>
 
         {/* CTA bar */}

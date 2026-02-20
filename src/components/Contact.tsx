@@ -215,7 +215,7 @@ export default function Contact() {
                   >
                     <option>Wood Fencing</option>
                     <option>Decks</option>
-                    <option>Outdoor Lighting</option>
+                    <option>Iron Fencing</option>
                     <option>Other</option>
                   </select>
                 </div>
